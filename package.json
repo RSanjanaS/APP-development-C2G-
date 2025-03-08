@@ -1,0 +1,15 @@
+{
+  "name": "finapp",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start"
+  },
+  "devDependencies": {
+    "@react-native-community/cli": "latest"
+  },
+  "dependencies": {
+    "react-native-elements": "^3.4.3",
+    "react-native-vector-icons": "^10.2.0"
+  }
+}
