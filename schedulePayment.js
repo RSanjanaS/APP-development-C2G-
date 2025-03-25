@@ -53,7 +53,7 @@ const ScheduledPaymentsApp = () => {
   };
 
   const onDateChange = (event, selectedDate) => {
-    setShowDatePicker(Platform.OS === 'ios');
+    setShowDatePicker(false);
     if (selectedDate) {
       const formattedDate = selectedDate.toISOString().split('T')[0];
       setDate(formattedDate);
@@ -61,7 +61,7 @@ const ScheduledPaymentsApp = () => {
   };
 
   const markedDates = scheduledPayments.reduce((acc, payment) => {
-    acc[payment.date] = { marked: true, dotColor: 'blue' };
+    acc[payment.date] = { marked: true, dotColor: '#7B2CBF' };
     return acc;
   }, {});
 
@@ -77,27 +77,33 @@ const ScheduledPaymentsApp = () => {
         
         {/* 📝 Schedule Form */}
         <Text style={styles.header}>Schedule a Payment</Text>
-        <TextInput style={styles.input} placeholder="Title" value={title} onChangeText={setTitle} />
-        <TextInput style={styles.input} placeholder="Amount" value={amount} onChangeText={setAmount} keyboardType="numeric" />
+        <TextInput style={styles.input} placeholder="Title" value={title} onChangeText={setTitle} placeholderTextColor="#aaa" />
+        <TextInput style={styles.input} placeholder="Amount" value={amount} onChangeText={setAmount} keyboardType="numeric" placeholderTextColor="#aaa" />
 
         <TouchableOpacity onPress={() => setShowDatePicker(true)}>
-          <TextInput style={styles.input} placeholder="Select Date" value={date} editable={false} pointerEvents="none" />
+          <TextInput style={styles.input} placeholder="Select Date" value={date} editable={false} placeholderTextColor="#aaa" />
         </TouchableOpacity>
         {showDatePicker && <DateTimePicker mode="date" value={new Date()} onChange={onDateChange} />}
 
         <Text style={styles.label}>Category:</Text>
-        <Picker selectedValue={category} onValueChange={setCategory}>
-          {categories.map((cat) => <Picker.Item label={cat} value={cat} key={cat} />)}
-        </Picker>
+        <View style={styles.pickerContainer}>
+          <Picker selectedValue={category} onValueChange={setCategory} style={styles.picker}>
+            {categories.map((cat) => <Picker.Item label={cat} value={cat} key={cat} />)}
+          </Picker>
+        </View>
 
         <Text style={styles.label}>Frequency:</Text>
-        <Picker selectedValue={frequency} onValueChange={setFrequency}>
-          {frequencies.map((freq) => <Picker.Item label={freq} value={freq} key={freq} />)}
-        </Picker>
+        <View style={styles.pickerContainer}>
+          <Picker selectedValue={frequency} onValueChange={setFrequency} style={styles.picker}>
+            {frequencies.map((freq) => <Picker.Item label={freq} value={freq} key={freq} />)}
+          </Picker>
+        </View>
 
-        <TextInput style={styles.input} placeholder="Notes / Description" value={notes} onChangeText={setNotes} />
+        <TextInput style={styles.input} placeholder="Notes / Description" value={notes} onChangeText={setNotes} placeholderTextColor="#aaa" />
 
-        <Button title="Schedule Payment" onPress={schedulePayment} />
+        <TouchableOpacity style={styles.button} onPress={schedulePayment}>
+          <Text style={styles.buttonText}>Schedule Payment</Text>
+        </TouchableOpacity>
 
         {/* 📜 Schedule History */}
         <Text style={styles.header}>Scheduled Payments History:</Text>
@@ -106,13 +112,13 @@ const ScheduledPaymentsApp = () => {
           keyExtractor={(item, index) => index.toString()}
           renderItem={({ item }) => (
             <View style={styles.paymentItem}>
-              <Text>Title: {item.title}</Text>
-              <Text>Amount: {item.amount}</Text>
-              <Text>Date: {item.date}</Text>
-              <Text>Category: {item.category}</Text>
-              <Text>Frequency: {item.frequency}</Text>
-              <Text>Notes: {item.notes}</Text>
-              <Text>Status: {item.status}</Text>
+              <Text style={styles.paymentText}>Title: {item.title}</Text>
+              <Text style={styles.paymentText}>Amount: {item.amount}</Text>
+              <Text style={styles.paymentText}>Date: {item.date}</Text>
+              <Text style={styles.paymentText}>Category: {item.category}</Text>
+              <Text style={styles.paymentText}>Frequency: {item.frequency}</Text>
+              <Text style={styles.paymentText}>Notes: {item.notes}</Text>
+              <Text style={styles.paymentText}>Status: {item.status}</Text>
             </View>
           )}
         />
@@ -122,7 +128,17 @@ const ScheduledPaymentsApp = () => {
         <Calendar
           markedDates={markedDates}
           onDayPress={handleDayPress}
-          theme={{ selectedDayBackgroundColor: 'blue', todayTextColor: 'red' }}
+          theme={{
+            backgroundColor: '#ffffff',
+            calendarBackground: '#ffffff',
+            textSectionTitleColor: '#7B2CBF',
+            todayTextColor: '#7B2CBF',
+            dayTextColor: '#000',
+            arrowColor: '#7B2CBF',
+            monthTextColor: '#7B2CBF',
+            selectedDayBackgroundColor: '#7B2CBF',
+            selectedDayTextColor: '#ffffff',
+          }}
         />
 
         {/* 🗓 Payments for Selected Date */}
@@ -132,16 +148,16 @@ const ScheduledPaymentsApp = () => {
             {paymentsOnSelectedDate.length > 0 ? (
               paymentsOnSelectedDate.map((item, index) => (
                 <View key={index} style={styles.paymentItem}>
-                  <Text>Title: {item.title}</Text>
-                  <Text>Amount: {item.amount}</Text>
-                  <Text>Category: {item.category}</Text>
-                  <Text>Frequency: {item.frequency}</Text>
-                  <Text>Notes: {item.notes}</Text>
-                  <Text>Status: {item.status}</Text>
+                  <Text style={styles.paymentText}>Title: {item.title}</Text>
+                  <Text style={styles.paymentText}>Amount: {item.amount}</Text>
+                  <Text style={styles.paymentText}>Category: {item.category}</Text>
+                  <Text style={styles.paymentText}>Frequency: {item.frequency}</Text>
+                  <Text style={styles.paymentText}>Notes: {item.notes}</Text>
+                  <Text style={styles.paymentText}>Status: {item.status}</Text>
                 </View>
               ))
             ) : (
-              <Text>No payments scheduled.</Text>
+              <Text style={styles.paymentText}>No payments scheduled.</Text>
             )}
           </View>
         )}
@@ -151,11 +167,16 @@ const ScheduledPaymentsApp = () => {
 };
 
 const styles = StyleSheet.create({
-  container: { padding: 20, flex: 1 },
-  header: { fontSize: 20, fontWeight: 'bold', marginVertical: 10 },
-  input: { borderWidth: 1, padding: 10, marginVertical: 5, borderRadius: 5 },
-  label: { marginTop: 10, fontWeight: 'bold' },
-  paymentItem: { padding: 10, borderWidth: 1, marginVertical: 5, borderRadius: 5 },
+  container: { backgroundColor: '#fff', padding: 20, flex: 1 },
+  header: { fontSize: 22, fontWeight: 'bold', color: '#7B2CBF', marginVertical: 10 },
+  input: { borderWidth: 1, borderColor: '#7B2CBF', padding: 12, marginVertical: 6, borderRadius: 8, color: '#000' },
+  label: { marginTop: 10, fontWeight: 'bold', color: '#7B2CBF' },
+  pickerContainer: { borderWidth: 1, borderColor: '#7B2CBF', borderRadius: 8, marginVertical: 6 },
+  picker: { color: '#000' },
+  button: { backgroundColor: '#7B2CBF', padding: 15, borderRadius: 8, alignItems: 'center', marginVertical: 10 },
+  buttonText: { color: '#fff', fontSize: 16, fontWeight: 'bold' },
+  paymentItem: { backgroundColor: '#f2e6ff', padding: 12, borderRadius: 8, marginVertical: 6 },
+  paymentText: { color: '#333' },
 });
 
 export default ScheduledPaymentsApp;
