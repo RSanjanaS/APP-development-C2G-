@@ -61,7 +61,7 @@ const ScheduledPaymentsApp = () => {
   };
 
   const markedDates = scheduledPayments.reduce((acc, payment) => {
-    acc[payment.date] = { marked: true, dotColor: '#7B2CBF' };
+    acc[payment.date] = { marked: true, dotColor: '#6200ee' };
     return acc;
   }, {});
 
@@ -131,12 +131,12 @@ const ScheduledPaymentsApp = () => {
           theme={{
             backgroundColor: '#ffffff',
             calendarBackground: '#ffffff',
-            textSectionTitleColor: '#7B2CBF',
-            todayTextColor: '#7B2CBF',
+            textSectionTitleColor: '#6200ee',
+            todayTextColor: '#6200ee',
             dayTextColor: '#000',
-            arrowColor: '#7B2CBF',
-            monthTextColor: '#7B2CBF',
-            selectedDayBackgroundColor: '#7B2CBF',
+            arrowColor: '#6200ee',
+            monthTextColor: '#6200ee',
+            selectedDayBackgroundColor: '#6200ee',
             selectedDayTextColor: '#ffffff',
           }}
         />
@@ -168,14 +168,14 @@ const ScheduledPaymentsApp = () => {
 
 const styles = StyleSheet.create({
   container: { backgroundColor: '#fff', padding: 20, flex: 1 },
-  header: { fontSize: 22, fontWeight: 'bold', color: '#7B2CBF', marginVertical: 10 },
-  input: { borderWidth: 1, borderColor: '#7B2CBF', padding: 12, marginVertical: 6, borderRadius: 8, color: '#000' },
-  label: { marginTop: 10, fontWeight: 'bold', color: '#7B2CBF' },
-  pickerContainer: { borderWidth: 1, borderColor: '#7B2CBF', borderRadius: 8, marginVertical: 6 },
+  header: { fontSize: 22, fontWeight: 'bold', color: '#6200ee', marginVertical: 10 },
+  input: { borderWidth: 1, borderColor: '#6200ee', padding: 12, marginVertical: 6, borderRadius: 8, color: '#000' },
+  label: { marginTop: 10, fontWeight: 'bold', color: '#6200ee' },
+  pickerContainer: { borderWidth: 1, borderColor: '#6200ee', borderRadius: 8, marginVertical: 6 },
   picker: { color: '#000' },
-  button: { backgroundColor: '#7B2CBF', padding: 15, borderRadius: 8, alignItems: 'center', marginVertical: 10 },
+  button: { backgroundColor: '#6200ee', padding: 15, borderRadius: 8, alignItems: 'center', marginVertical: 10 },
   buttonText: { color: '#fff', fontSize: 16, fontWeight: 'bold' },
-  paymentItem: { backgroundColor: '#f2e6ff', padding: 12, borderRadius: 8, marginVertical: 6 },
+  paymentItem: { backgroundColor: '#6200ee', padding: 12, borderRadius: 8, marginVertical: 6 },
   paymentText: { color: '#333' },
 });
 
