@@ -116,36 +116,36 @@ const MoneyExchange = () => {
 const styles = StyleSheet.create({
     container: {
         padding: 16,
-        backgroundColor: '#E3F2FD',
+        backgroundColor: 'white',
         flex: 1,
     },
     title: {
         fontSize: 26,
         fontWeight: 'bold',
         textAlign: 'center',
-        color: '#1565C0',
+        color: '#6200ee',
         marginBottom: 16,
     },
     text: {
         fontSize: 18,
-        color: '#1B5E20',
+        color: '#6200ee',
         marginBottom: 4,
     },
     feeText: {
         fontSize: 14,
-        color: '#2E7D32',
+        color: '#6200ee',
     },
     inputLarge: {
         fontSize: 20,
         padding: 12,
         borderWidth: 1,
-        borderColor: '#1B5E20',
+        borderColor: '#6200ee',
         borderRadius: 8,
         marginBottom: 12,
         backgroundColor: 'white'
     },
     button: {
-        backgroundColor: '#43A047',
+        backgroundColor: '#6200ee',
         padding: 14,
         borderRadius: 8,
         marginTop: 16,
