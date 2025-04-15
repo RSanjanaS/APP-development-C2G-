@@ -32,17 +32,16 @@ export default function App() {
           <Stack.Screen name="Statement" component={StatementScreen} />
           <Stack.Screen name="WalletNavigator" component={WalletNavigator} />
           <Stack.Screen name="AddCard" component={AddCardScreen} />
-        <Stack.Screen name="Withdraw" component={WithdrawScreen} />
-        <Stack.Screen name="Transfer" component={TransferScreen} />
-        <Stack.Screen name="Schedule" component={ScheduleScreen} />
-        <Stack.Screen name="Investments" component={InvestmentPortfolioScreen} />
-        <Stack.Screen name="ExpensePrediction" component={ExpensePredictionScreen} />
-<Stack.Screen name="Login" component={LoginWithOtpScreen} />
-<Stack.Screen name="Home" component={HomeScreen} />
-<Stack.Screen name="ProfileDetails" component={ProfileDetailsScreen} />
-<Stack.Screen name="Send" component={SendScreen} />
-<Stack.Screen name="Exchange" component={ExchangeScreen} />
-
+          <Stack.Screen name="Withdraw" component={WithdrawScreen} />
+          <Stack.Screen name="Transfer" component={TransferScreen} />
+          <Stack.Screen name="Schedule" component={ScheduleScreen} />
+          <Stack.Screen name="Investments" component={InvestmentPortfolioScreen} />
+          <Stack.Screen name="ExpensePrediction" component={ExpensePredictionScreen} />
+          <Stack.Screen name="Login" component={LoginWithOtpScreen} />
+          <Stack.Screen name="Home" component={HomeScreen} />
+          <Stack.Screen name="ProfileDetails" component={ProfileDetailsScreen} />
+          <Stack.Screen name="Send" component={SendScreen} />
+          <Stack.Screen name="Exchange" component={ExchangeScreen} />
         </Stack.Navigator>
       </NavigationContainer>
     </ThemeProvider>
